@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bilan Mental Express en direct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Lien vers le style -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js (pour le radar) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>Bilan Mental Express en direct</h1>
+<p>Déplace les curseurs selon ce qui te correspond le plus.</p>
+
+<form id="testForm">
+
+  <!-- EXEMPLE : Thématique 1 -->
+  <h2>Gestion du stress</h2>
+
+  <label>Question 1</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="stress">
+
+  <label>Question 2</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="stress">
+
+  <label>Question 3</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="stress">
+
+  <!-- Tu ajouteras les autres thématiques ici -->
+
+  <button type="button" onclick="calculerScores()">Voir mon bilan</button>
+
+</form>
+
+<canvas id="radarChart"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
