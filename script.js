@@ -80,6 +80,8 @@ function updateSlider(slider) {
 }
 
 window.onload = function () {
+  updateProgressBar();
   const sliders = document.querySelectorAll('.slider');
   sliders.forEach(slider => updateSlider(slider));
 };
+
