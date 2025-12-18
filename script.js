@@ -112,3 +112,27 @@ window.onload = function () {
   sliders.forEach(slider => updateSlider(slider));
 };
 
+function prevStep() {
+
+  // Cacher l'étape actuelle
+  steps[currentStep].classList.remove('active');
+
+  currentStep--;
+
+  // Sécurité (ne jamais descendre sous 0)
+  if (currentStep < 0) currentStep = 0;
+
+  // Réafficher le bouton Suivant
+  document.getElementById('nextBtn').style.display = 'block';
+  document.getElementById('resultBtn').style.display = 'none';
+
+  // Cacher le bouton Retour si on revient au début
+  if (currentStep === 0) {
+    document.getElementById('prevBtn').style.display = 'none';
+  }
+
+  // Afficher l'étape précédente
+  steps[currentStep].classList.add('active');
+
+  updateProgressBar();
+}
