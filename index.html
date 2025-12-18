@@ -14,6 +14,7 @@
 
 <body>
 
+<div id="testView">  
 <h1>Bilan Mental Express en direct</h1>
 <p>Déplace les curseurs de chaque phrase selon si tu réalises toujours, souvent, parfois, rarement ou jamais l'action présentée.</p>
 <br/>
@@ -494,15 +495,22 @@
   <button type="button" id="nextBtn" onclick="nextStep()">
   Suivant
   </button>
-  <button type="button" id="resultBtn" onclick="calculerScores()" style="display:none;">
+  <button type="button" id="resultBtn" onclick="showResults()" style="display:none;">
   Voir mon bilan
   </button>
   </div>
 
 </form>
+</div>
 
+<div id="resultView" style="display:none;">
+  <h2>Ton Bilan Mental</h2>  
 <canvas id="radarChart"></canvas>
-
+<button type="button" onclick="backToTest()">
+    Retour au questionnaire
+</button>
+</div>  
+  
 <script src="script.js"></script>
 </body>
 </html>
