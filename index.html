@@ -17,10 +17,15 @@
 <h1>Bilan Mental Express en direct</h1>
 <p>Déplace les curseurs de chaque phrase selon si tu réalises toujours, souvent, parfois, rarement ou jamais l'action présentée.</p>
 <br/>
+  <div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+  </div>
+
 <form id="testForm">
 
   <!-- AXE 1 -->
-  <h2>Motivation et Plaisir</h2>
+  <div class="step active">
+    <h2>Motivation et Plaisir</h2>
   <br/>
 <div class="scale">
     <span>Jamais</span>
@@ -72,10 +77,12 @@
     >
     <div class="slider-label">Motivation</div>
     </div><br/>
+</div>
   
   
   <!-- AXE 2 -->
-  <h2>Concentration et attention</h2>
+  <div class="step">
+    <h2>Concentration et attention</h2>
 
   <label>J'arrive à rester concentré(e) jusqu'au bout, même quand il se passe plein de choses autour de moi.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="concentration">
@@ -85,9 +92,11 @@
 
   <label>Je fais attention aux petits détails dans mon activité / mon travail.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="concentration">
-
+  </div>
+    
   <!-- AXE 3 -->
-  <h2>Gestion du stress et des émotions</h2>
+  <div class="step">
+    <h2>Gestion du stress et des émotions</h2>
 
   <label>Avant une compétition, je me sens calme et concentré(e).</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="stress">
@@ -97,9 +106,11 @@
 
   <label>Quand j'ai très envie de réussir, je parviens à gérer mon stress.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="stress">
-
+  </div>
+    
   <!-- AXE 4 -->
-  <h2>Confiance en soi</h2>
+  <div class="step">
+    <h2>Confiance en soi</h2>
 
   <label>Je pense que je peux réussir, même quand c'est difficile ou même si j'ai peur de rater.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="confiance">
@@ -109,9 +120,11 @@
 
   <label>Je suis fier(e) de moi quand je fais de mon mieux, quelque soit le résultat de mon travail.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="confiance">
-
+  </div>
+    
   <!-- AXE 5 -->
-  <h2>Fixation d'objectifs</h2>
+  <div class="step">
+    <h2>Fixation d'objectifs</h2>
 
   <label>Je sais ce que je veux améliorer dans ma pratique de mon activité / mon travail.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="objectifs">
@@ -121,9 +134,11 @@
 
   <label>J'aime voir mes progrès au fil du temps, m'améliorer, battre mes records.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="objectifs">
-
+  </div>
+    
   <!-- AXE 6 -->
-  <h2>Imagerie mentale</h2>
+  <div class="step">
+    <h2>Imagerie mentale</h2>
 
   <label>Je peux imaginer dans ma tête la manière dont je vais réussir et ça m'aide.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="imagerie">
@@ -133,9 +148,11 @@
 
   <label>J'imagine mes mouvements ou gestes avant de les faire, pour m'améliorer.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="imagerie">
-
+  </div>
+    
   <!-- AXE 7 -->
-  <h2>Pensées et discours internes</h2>
+  <div class="step">
+    <h2>Pensées et discours internes</h2>
 
   <label>Je me dis souvent des choses positives pour m'encourager et me remotiver.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="pensées">
@@ -145,9 +162,11 @@
 
   <label>Je ne me fâche pas contre moi-même ou contre les autres quand je rate quelque chose.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="pensées">
-
+  </div>
+    
   <!-- AXE 8 -->
-  <h2>Bien-être</h2>
+  <div class="step">
+    <h2>Bien-être</h2>
 
   <label>Je me sens bien et en sécurité quand je vais faire mon activité / mon travail.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="bien-être">
@@ -157,7 +176,7 @@
 
   <label>Si quelque chose me dérange dans mon activité / mon travail, je sais que je peux en parler à quelqu'un de confiance.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="bien-être">
-
+  </div>
 
   <button type="button" onclick="calculerScores()">Voir mon bilan</button>
 
