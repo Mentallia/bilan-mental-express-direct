@@ -19,19 +19,102 @@
 
 <form id="testForm">
 
-  <!-- EXEMPLE : Thématique 1 -->
-  <h2>Gestion du stress</h2>
+  <!-- AXE 1 -->
+  <h2>Motivation et Plaisir</h2>
 
-  <label>Question 1</label>
+  <label>Je me donne à fond dans mon activité / mon travail et cela me rend heureux(se).</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="motivation">
+
+  <label>J'ai envie d'aller faire mon activité / mon travail, même quand je suis fatigué(e) ou quand c'est dur.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="motivation">
+
+  <label>Je me sens bien quand je suis dans mon activité / mon travail, même quand je ne réussis pas.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="motivation">
+
+  <!-- AXE 2 -->
+  <h2>Concentration et attention</h2>
+
+  <label>J'arrive à rester concentré(e) jusqu'au bout, même quand il se passe plein de choses autour de moi.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="concentration">
+
+  <label>J'écoute attentivement les consignes qui me sont données.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="concentration">
+
+  <label>Je fais attention aux petits détails dans mon activité / mon travail.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="concentration">
+
+  <!-- AXE 3 -->
+  <h2>Gestion du stress et des émotions</h2>
+
+  <label>Avant une compétition, je me sens calme et concentré(e).</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="stress">
 
-  <label>Question 2</label>
+  <label>Quand je suis stressé()e, je sais comment me calmer et être performant(e) dans mon activité / mon travail.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="stress">
 
-  <label>Question 3</label>
+  <label>Quand j'ai très envie de réussir, je parviens à gérer mon stress.</label>
   <input type="range" min="1" max="5" value="3" class="slider" data-theme="stress">
 
-  <!-- Tu ajouteras les autres thématiques ici -->
+  <!-- AXE 4 -->
+  <h2>Confiance en soi</h2>
+
+  <label>Je pense que je peux réussir, même quand c'est difficile ou même si j'ai peur de rater.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="confiance">
+
+  <label>Je me sens fort(e) même si j'échoue parfois.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="confiance">
+
+  <label>Je suis fier(e) de moi quand je fais de mon mieux, quelque soit le résultat de mon travail.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="confiance">
+
+  <!-- AXE 5 -->
+  <h2>Fixation d'objectifs</h2>
+
+  <label>Je sais ce que je veux améliorer dans ma pratique de mon activité / mon travail.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="objectifs">
+
+  <label>Je termine toujours ce que j'ai commencé, même quand c'est dur.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="objectifs">
+
+  <label>J'aime voir mes progrès au fil du temps, m'améliorer, battre mes records.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="objectifs">
+
+  <!-- AXE 6 -->
+  <h2>Imagerie mentale</h2>
+
+  <label>Je peux imaginer dans ma tête la manière dont je vais réussir et ça m'aide.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="imagerie">
+
+  <label>Je revois dans ma tête et je ressens les actions, les gestes que j'ai effectués dernièrement.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="imagerie">
+
+  <label>J'imagine mes mouvements ou gestes avant de les faire, pour m'améliorer.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="imagerie">
+
+  <!-- AXE 7 -->
+  <h2>Pensées et discours internes</h2>
+
+  <label>Je me dis souvent des choses positives pour m'encourager et me remotiver.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="pensées">
+
+  <label>Je pense plutôt à ce que je fais de bien qu'à mes erreurs.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="pensées">
+
+  <label>Je ne me fâche pas contre moi-même ou contre les autres quand je rate quelque chose.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="pensées">
+
+  <!-- AXE 8 -->
+  <h2>Bien-être</h2>
+
+  <label>Je me sens bien et en sécurité quand je vais faire mon activité / mon travail.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="bien-être">
+
+  <label>Après mon activité / mon travail, je me sens bien dans mon corps et dans ma tête.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="bien-être">
+
+  <label>Si quelque chose me dérange dans mon activité / mon travail, je sais que je peux en parler à quelqu'un de confiance.</label>
+  <input type="range" min="1" max="5" value="3" class="slider" data-theme="bien-être">
+
 
   <button type="button" onclick="calculerScores()">Voir mon bilan</button>
 
