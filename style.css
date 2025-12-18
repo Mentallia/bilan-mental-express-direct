@@ -64,3 +64,23 @@ button {
 .slider::-webkit-slider-thumb:hover {
   transform: scale(1.2);
 }
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.slider-label {
+  position: absolute;
+  top: 28px; /* distance sous le curseur */
+  transform: translateX(-50%);
+  font-size: 12px;
+  background-color: #1e3a8a;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: left 0.15s ease;
+}
