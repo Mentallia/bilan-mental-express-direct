@@ -51,3 +51,21 @@ function afficherRadar(scores) {
     }
   });
 }
+
+function updateSlider(slider) {
+  const value = slider.value;
+  const percentage = ((value - 1) / 4) * 100;
+
+  slider.style.background = `
+    linear-gradient(
+      to right,
+      #1e3a8a ${percentage}%,
+      #ddd ${percentage}%
+    )
+  `;
+}
+
+window.onload = function () {
+  const sliders = document.querySelectorAll('.slider');
+  sliders.forEach(slider => updateSlider(slider));
+};
