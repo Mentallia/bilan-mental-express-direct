@@ -86,8 +86,8 @@
   
   
   <!-- AXE 2 -->
-   <div class="step">
-    <h2>Motivation et Plaisir</h2>
+<div class="step">
+    <h2>Concentration et attention</h2>
   <br/>
 <div class="scale">
     <span>Jamais</span>
@@ -106,7 +106,7 @@
       max="5"
       value="3"
       class="slider"
-      data-theme="motivation"
+      data-theme="concentration"
       oninput="updateSlider(this)"
     >
     <div class="slider-label">Parfois</div>
@@ -120,7 +120,7 @@
       max="5"
       value="3"
       class="slider"
-      data-theme="motivation"
+      data-theme="concentration"
       oninput="updateSlider(this)"
     >
     <div class="slider-label">Parfois</div>
@@ -134,11 +134,20 @@
       max="5"
       value="3"
       class="slider"
-      data-theme="motivation"
+      data-theme="concentration"
       oninput="updateSlider(this)"
     >
     <div class="slider-label">Parfois</div>
     </div><br/>
+
+  <button type="button" id="prevBtn" onclick="prevStep()" style="display:none;">
+  Retour
+  </button>
+
+  <button type="button" id="nextBtn" onclick="nextStep()">
+  Suivant
+  </button>
+
 </div>
     
 
