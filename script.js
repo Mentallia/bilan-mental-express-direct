@@ -41,14 +41,22 @@ function afficherRadar(scores) {
         data: scores,
         fill: true,
         backgroundColor: "rgba(30,58,138,0.2)",
-        borderColor: "rgba(30,58,138,1)"
+        borderColor: "rgba(18,20,73,1)"
       }]
     },
     options: {
       scales: {
         r: {
           min: 0,
-          max: 15
+          max: 15,
+
+          pointLabels: {
+          font: {
+          size: 14,      // taille du texte
+          weight: 'bold' // gras
+        },
+        color: '#121449' // bleu Mentallia
+      },
         }
       }
     }
