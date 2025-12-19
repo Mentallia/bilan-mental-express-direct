@@ -97,7 +97,7 @@ button {
 .progress-bar {
   height: 100%;
   width: 0%;
-  background-color: #e4fe4f;
+  background-color: #121449;
   transition: width 0.3s ease;
 }
 
