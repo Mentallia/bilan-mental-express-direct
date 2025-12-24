@@ -120,12 +120,15 @@ button {
 }
 
 
-.home-page .header { /*mise en page en-tête page index.html */
+.home-header { /*mise en page en-tête page index.html */
   display: flex;
+  justify-content: center;
   align-items: center;
+  padding: 20px;
 }
-.home-page .logo {
+.home-header .logo {
   height: 100px;   /* plus grand */
+  width: auto;
 }
 
 .bilan-page .header { /*mise en page en-tête page bilan.html */
