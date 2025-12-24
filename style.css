@@ -122,13 +122,8 @@ button {
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   padding: 10px 15px;
-}
-
-.logo {
-  height: 50px;       /* ajuste si besoin */
-  width: auto;
 }
 
 .logo {
