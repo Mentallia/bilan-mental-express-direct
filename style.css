@@ -121,10 +121,10 @@ button {
 
 
 .home-page .header { /*mise en page en-tête page index.html */
-  justify-content: center;
+  justify-content: right;
 }
 .home-page .logo {
-  height: 80px;   /* plus grand */
+  height: 100px;   /* plus grand */
 }
 
 .bilan-page .header { /*mise en page en-tête page bilan.html */
