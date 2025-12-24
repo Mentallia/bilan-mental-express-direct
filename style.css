@@ -131,12 +131,6 @@ button {
   width: auto;
 }
 
-.header {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 15px;
-}
-
 .logo {
   height: 50px;       /* ajuste si besoin */
   width: auto;
