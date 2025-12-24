@@ -127,13 +127,15 @@ button {
   padding: 20px;
 }
 .home-page .logo {
-  height: 20px;   /* plus grand */
+  height: 60px;   /* plus grand */
   width: auto;
 }
 
 .bilan-page .header { /*mise en page en-tête page bilan.html */
   display: flex;
+  justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 .bilan-page .logo {
   height: 50px;
