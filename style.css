@@ -119,12 +119,21 @@ button {
   font-weight: bold;  /* sécurité si jamais <strong> est retiré */
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: left;
-  padding: 10px 15px;
+
+.home-page .header { /*mise en page en-tête page index.html */
+  justify-content: center;
 }
+.home-page .logo {
+  height: 80px;   /* plus grand */
+}
+
+.bilan-page .header { /*mise en page en-tête page bilan.html */
+  justify-content: space-between;
+}
+.bilan-page .logo {
+  height: 50px;
+}
+
 
 .logo {
   height: 50px;       /* ajuste si besoin */
