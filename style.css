@@ -140,3 +140,24 @@ button {
   height: 50px;       /* ajuste si besoin */
   width: auto;
 }
+
+.home {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.start-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 15px 25px;
+  background-color: #1e3a8a;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.start-btn:hover {
+  background-color: #163172;
+}
