@@ -207,7 +207,7 @@ body {
   display: grid
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  height: 90px;
+  height: 70px;
   padding: 0 20px;
   background-color: #121449; /* Bleu Mentallia */
   color: white;
@@ -221,7 +221,7 @@ body {
 
 .logo-navbar {
   Height: 100%;
-  Max-height: 70px;
+  Max-height: 55px;
   width: auto;
   display: block;
 }
@@ -272,7 +272,7 @@ body {
     align-items: center;
     cursor: pointer;
     color: white;
-    font-size: 24px;
+    font-size: 26px;
   }
 
 @media (max-width: 600px) {
