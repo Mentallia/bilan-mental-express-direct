@@ -208,8 +208,8 @@ body {
   color: white;
 }
 
-.logo {
-  height: 50px; /* Ajuste la taille du logo */
+.navbar .logoblanc {
+  height: 10px; /* Ajuste la taille du logo */
 }
 
 .nav-center {
