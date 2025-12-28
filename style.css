@@ -260,7 +260,13 @@ body {
 /* Survol  */
 .nav-links li a:hover {
   opacitu: 0.7;
-  color: #123245; /* Couleur d'accent au survol */
+  color: #7cc7ff; /* Couleur d'accent au survol */
+}
+
+/*Onglet actif */
+.nav-links li a.active {
+  color: #7cc7ff;
+  font-weight: 700;
 }
 
   .menu-toggle {
