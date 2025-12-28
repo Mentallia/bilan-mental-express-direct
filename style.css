@@ -1,4 +1,4 @@
-body {
+cbody {
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: #ffffff;
@@ -216,11 +216,14 @@ body {
 .nav-logo {
   position: absolute;
   left:20px;
+  display: flex;
+  align-items: center;
 }
 
 .logo-navbar {
   max-height: 70px; /* Ajuste la taille du logo navbar*/
   width: auto;
+  display: block;
 }
 
 .nav-links {
@@ -231,6 +234,7 @@ body {
   gap: 20px; /* espace entre les liens */
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 /* Liens normaux */
@@ -239,6 +243,10 @@ body {
   color: white;
   font-weight: 500;
   transition: color 0.3s;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  height: 100%
 }
 
 /* Lien visité */
@@ -259,7 +267,8 @@ body {
 }
 
   .menu-toggle {
-    display: none;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     color: white;
     font-size: 24px;
