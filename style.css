@@ -204,13 +204,13 @@ body {
 }
 
 .navbar {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex
   align-items: center;
+  justify-content: center;
   height: 90px;
   padding: 0 20px;
   background-color: #121449; /* Bleu Mentallia */
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 100;
   color: white;
@@ -224,14 +224,12 @@ body {
 .logo-navbar {
   max-height: 70px; /* Ajuste la taille du logo navbar*/
   width: auto;
-  display: block;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   gap: 20px; /* espace entre les liens */
-  justify-center: center;
   margin: 0;
   padding: 0;
 }
@@ -278,7 +276,7 @@ body {
     width: 100%;
     display: none; /* masqué par défaut */
     padding: 20px 0;
-    text-align: center;
+    align-items: center;
   }
 
   .nav-links.active {
