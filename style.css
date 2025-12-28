@@ -210,10 +210,10 @@ body {
 
 .nav-logo {
   position: absolute;
-  left:2àpx;
+  left:20px;
 }
 
-.navbar-logo img {
+.nav-logo img {
   height: 10px; /* Ajuste la taille du logo */
 }
 
