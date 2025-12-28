@@ -207,7 +207,7 @@ body {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  height: 70px;
+  height: 90px;
   padding: 0 20px;
   background-color: #121449; /* Bleu Mentallia */
   position: sticky;
@@ -222,7 +222,7 @@ body {
 }
 
 .logo-navbar {
-  max-height: 50px; /* Ajuste la taille du logo navbar*/
+  max-height: 70px; /* Ajuste la taille du logo navbar*/
   width: auto;
   display: block;
 }
