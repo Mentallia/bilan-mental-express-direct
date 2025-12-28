@@ -208,7 +208,12 @@ body {
   color: white;
 }
 
-.navbar .logoblanc {
+.nav-logo {
+  position: absolute;
+  left:2àpx;
+}
+
+.navbar-logo img {
   height: 10px; /* Ajuste la taille du logo */
 }
 
