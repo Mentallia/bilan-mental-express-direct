@@ -204,7 +204,7 @@ body {
 }
 
 .navbar {
-  display: fgrid
+  display: grid
   grid-template-columns: auto 1fr auto;
   align-items: center;
   height: 90px;
@@ -231,7 +231,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px; /* espace entre les liens */
+  gap: 30px; /* espace entre les liens */
   margin: 0;
   padding: 0;
   height: 100%;
@@ -257,12 +257,12 @@ body {
 /* Survol  */
 .nav-links li a:hover {
   opacitu: 0.7;
-  color: #7cc7ff; /* Couleur d'accent au survol */
+  color: #ffec1fff; /* Couleur d'accent au survol */
 }
 
 /*Onglet actif */
 .nav-links li a.active {
-  color: #7cc7ff;
+  color: #ffec1fff;
   font-weight: 700;
 }
 
