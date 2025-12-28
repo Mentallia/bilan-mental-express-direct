@@ -213,8 +213,10 @@ body {
   left:20px;
 }
 
-.nav-logo img {
-  height: 10px; /* Ajuste la taille du logo */
+.logo-navbar {
+  max-height: 50px; /* Ajuste la taille du logo navbar*/
+  width: auto;
+  display: block;
 }
 
 .nav-center {
