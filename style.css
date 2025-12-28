@@ -126,10 +126,6 @@ button {
   align-items: center;
   padding: 20px;
 }
-.home-page .logo {
-  height: 150px;   /* plus grand */
-  width: auto;
-}
 
 .home-page h2 {
   font-size: 1.5rem;
@@ -212,7 +208,7 @@ body {
   color: white;
 }
 
-.index-page .logo-img {
+.home-page .logo-img {
   height: 50px; /* Ajuste la taille du logo */
 }
 
