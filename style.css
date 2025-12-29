@@ -138,6 +138,7 @@ button {
 .intro {
   font-size: 1.15rem;   /* légèrement plus grand */
   font-weight: bold;  /* sécurité si jamais <strong> est retiré */
+  justify-content: center;
   text-align: center;
 }
 
@@ -186,7 +187,7 @@ button {
 }
 
 .logo-main {
-  max-width: 100px;
+  max-width: 200px;
   width: 100%;
   height: auto;
   margin: 40px auto;
