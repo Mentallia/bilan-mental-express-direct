@@ -2,6 +2,7 @@ cbody {
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: #ffffff;
+  padding-top: 70px; /* espace pour la navbar fixe */
 }
 
 .hero {
