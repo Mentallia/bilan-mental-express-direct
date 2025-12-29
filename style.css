@@ -309,7 +309,7 @@ body {
     color: #E6E6FA;
     background: red;
     font-size: 28px;
-    margin-left: auto;
+    right: 20px;
   }
 
 @media (max-width: 600px) {
@@ -330,8 +330,6 @@ body {
 
   .menu-toggle {
     display: block;
-    align-items: center;
-    background: red;
   }
 }
 
