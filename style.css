@@ -390,3 +390,48 @@ body {
     justify-content: center;
   }
 }
+
+
+.about-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 20px;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap; /* permet au texte de se placer sous l'image sur mobile */
+    }
+
+    .about-photo {
+      flex: 0 0 250px; /* largeur fixe pour la photo sur desktop */
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .about-text h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    /* Responsive : image au-dessus du texte sur mobile */
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about-text {
+        text-align: center;
+      }
+    }
