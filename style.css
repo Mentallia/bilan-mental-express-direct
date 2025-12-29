@@ -393,25 +393,26 @@ body {
 
 
 .about-container {
-      display: flex;
-      max-width: 1200px;
-      margin: 80px auto;
-      padding: 0 20px;
-      gap: 40px;
-      align-items: flex-start;
-      flex-wrap: wrap; /* permet au texte de se placer sous l'image sur mobile */
-    }
+  display: flex;
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
 
-    .about-photo {
-      flex: 0 0 250px; /* largeur fixe pour la photo sur desktop */
-      max-width: 100%;
-      border-radius: 10px;
-    }
+.about-photo {
+  flex: 0 0 180px; /* largeur fixe réduite */
+  width: 100%;      /* s’adapte au conteneur mais limité par flex */
+  max-width: 180px; /* ne dépasse jamais 180px */
+  border-radius: 10px;
+}
 
-    .about-text {
-      flex: 1;
-      min-width: 250px;
-    }
+.about-text {
+  flex: 1;
+  min-width: 250px;
+}
 
     .about-text h1 {
       font-size: 2rem;
