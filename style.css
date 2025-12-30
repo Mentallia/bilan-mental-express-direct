@@ -285,6 +285,7 @@ button {
   text-decoration: underline;
 }
 
+/* Barre de navigation */
 .navbar {
   position: fixed;
   top: 0;
@@ -297,6 +298,7 @@ button {
   padding: 0 16px;
   box-sizing: border-box;
   z-index: 2000;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .nav-logo {
