@@ -4,11 +4,6 @@ body {
   padding-top: 70px; /* espace pour la navbar fixe */
 }
 
-.separator-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
 .separator-focus {
   width: 100px;
   height: 1px;
@@ -29,6 +24,7 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 .hero {
   max-width: 1500px;
   margin: 50px auto;
