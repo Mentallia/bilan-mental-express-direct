@@ -166,7 +166,7 @@ button {
   text-align: center;
 }
 
-<!-- Grille Partenaires -->
+/* Grille Partenaires */
 .partner-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -185,7 +185,7 @@ button {
   transition: transform 0.3s ease;
 }
 
-.partner-item p {
+.partner-grid .partner-item p {
   font-size: 0.9rem;
   color: #121449;
   text-align: center;
