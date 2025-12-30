@@ -18,7 +18,7 @@ body {
   content: "";
   width: 8px;
   height: 8px;
-  background-color: #ffec1f;
+  background-color: #ffd700;
   border-radius: 50%;
   position: absolute;
   left: 50%;
@@ -348,12 +348,12 @@ button {
 /* Survol  */
 .nav-links li a:hover {
   opacity: 0.7;
-  color: #ffec1fff; /* Couleur d'accent au survol */
+  color: #ffd700; /* Couleur d'accent au survol */
 }
 
 /*Onglet actif */
 .nav-links li a.active {
-  color: #ffec1fff;
+  color: #ffd700;
   font-weight: 700;
 }
 
