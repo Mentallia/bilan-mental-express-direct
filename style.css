@@ -495,7 +495,7 @@ button {
 }
 
 .presta-card {
-  text-align: left;
+  text-align: center;
 }
 
 .presta-image {
@@ -521,6 +521,9 @@ button {
 .custom-list2 {
   list-style: none;
   padding-left: 0;
+  text-align: left;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .custom-list2 li {
