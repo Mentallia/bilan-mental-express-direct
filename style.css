@@ -166,6 +166,46 @@ button {
   text-align: center;
 }
 
+<!-- Grille Partenaires -->
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin: 40px 0;
+  align-items: start;
+}
+
+.partner-item {
+  text-align: center;
+}
+
+.partner-item img {
+  max-width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.partner-item p {
+  font-size: 0.9rem;
+  color: #121449;
+}
+
+.partner-item:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .partners-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .partners-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 .home-page .header { /*mise en page en-tête page index.html */
   display: flex;
