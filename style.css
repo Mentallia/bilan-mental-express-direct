@@ -5,10 +5,10 @@ body {
 }
 
 .separator-focus {
-  height: 1px;
   width: 100px;
+  height: 1px;
   max-width: 100%
-  margin: 50px 0;
+  margin: 50px auto;
   background-color: #121449;
   opacity: 0.4;
   position: relative;
