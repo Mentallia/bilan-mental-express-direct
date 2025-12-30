@@ -4,16 +4,21 @@ body {
   padding-top: 70px; /* espace pour la navbar fixe */
 }
 
+.separator-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .separator-focus {
   width: 100px;
   height: 1px;
   max-width: 100%
-  margin: 50px auto;
+  margin: 50px 0;
   background-color: #121449;
   opacity: 0.4;
   position: relative;
 }
-.separator-focus: :after {
+.separator-focus::after {
   content: "";
   width: 8px;
   height: 8px;
@@ -24,7 +29,6 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-
 .hero {
   max-width: 1500px;
   margin: 50px auto;
