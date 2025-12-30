@@ -537,3 +537,12 @@ button {
   position: absolute;
   left: 0;
 }
+
+.align-left {
+  text-align: left;
+}
+
+.custom-list.align-left {
+  margin-left: 0;
+  margin-right: auto;
+}
