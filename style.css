@@ -616,7 +616,7 @@ button {
 /* Page avis */
 .avis-page {
   max-width: 1200px;
-  margin: 80px auto;
+  margin: 50px auto;
   padding: 0 20px;
 }
 
@@ -632,7 +632,7 @@ button {
 }
 
 .avis-subtitle {
-  fontsize: 1.5rem;
+  fontsize: 1.8rem;
   max-width: 700px;
   margin: 0 auto;
 }
