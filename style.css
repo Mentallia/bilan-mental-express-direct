@@ -632,8 +632,9 @@ button {
 }
 
 .avis-subtitle {
-  fontsize: 1.8rem;
+  fontsize: 2.0rem;
   max-width: 700px;
+  color: #121449;
   margin: 0 auto;
 }
 
