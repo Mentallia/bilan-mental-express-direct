@@ -998,48 +998,50 @@
        DEMARRAGE
     ========================================================= */
 
-    function demarrerTest() {
 
-      if (timerStimulus !== null) {
-        clearTimeout(timerStimulus);
-        timerStimulus = null;
-      }
+function demarrerTest() {
 
-      if (timerProchainEssai !== null) {
-        clearTimeout(timerProchainEssai);
-        timerProchainEssai = null;
-      }
+  if (timerStimulus !== null) {
+    clearTimeout(timerStimulus);
+    timerStimulus = null;
+  }
 
-      phase = "entrainement";
-      essaiActuel = 0;
+  if (timerProchainEssai !== null) {
+    clearTimeout(timerProchainEssai);
+    timerProchainEssai = null;
+  }
 
-      stimulusActuel = null;
-      tempsDebutStimulus = null;
+  phase = "entrainement";
+  essaiActuel = 0;
 
-      tempsReponses = [];
-      nombreReponsesCorrectes = 0;
+  stimulusActuel = null;
+  tempsDebutStimulus = null;
 
-      genererEssais();
+  tempsReponses = [];
+  nombreReponsesCorrectes = 0;
 
-      instructions.style.display = "none";
-      finMessage.style.display = "none";
-      testZone.style.display = "block";
+  genererEssais();
 
-      desactiverTousLesCercles();
+  instructions.style.display = "none";
+  finMessage.style.display = "none";
+  testZone.style.display = "block";
 
-testStatus.textContent =
-  "Préparez-vous… le test va commencer dans 3 secondes.";
-
-setTimeout(function() {
+  desactiverTousLesCercles();
 
   testStatus.textContent =
-    "Fixez la croix centrale";
+    "Préparez-vous… le test va commencer dans 3 secondes.";
 
-  afficherStimulus();
+  setTimeout(function() {
 
-}, 3000);
+    testStatus.textContent =
+      "Fixez la croix centrale";
 
-    }
+    afficherStimulus();
+
+  }, 3000);
+
+}
+
 
 
     /* =========================================================
