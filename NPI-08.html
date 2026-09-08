@@ -1027,10 +1027,17 @@
 
       desactiverTousLesCercles();
 
-      testStatus.textContent =
-        "Fixez la croix centrale";
+testStatus.textContent =
+  "Préparez-vous… le test va commencer dans 3 secondes.";
 
-      afficherStimulus();
+setTimeout(function() {
+
+  testStatus.textContent =
+    "Fixez la croix centrale";
+
+  afficherStimulus();
+
+}, 3000);
 
     }
 
