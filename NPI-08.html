@@ -460,9 +460,12 @@
           parmi les boutons affichés à l'écran.
         </p>
 
+ 
         <button id="btnDemarrer" class="btn-principal">
-          Commencer le test
+        START
         </button>
+
+     
 
       </div>
 
@@ -492,6 +495,22 @@
           <div class="cercle cercle-8" data-chiffre="9">9</div>
 
         </div>
+
+<div id="startOfficiel" class="instructions" style="display: none;">
+
+  <p>
+    Les essais d'entraînement sont terminés.
+    <br><br>
+    Lorsque vous êtes prêt, cliquez sur <strong>START</strong>
+    pour commencer les 40 essais officiels.
+  </p>
+
+  <button id="btnStartOfficiel" class="btn-principal">
+    START
+  </button>
+
+</div>
+
 
 
         <div class="clavier-visuel">
@@ -609,7 +628,12 @@
     const boutonsChiffres =
       document.querySelectorAll(".btn-chiffre");
 
+    const startOfficiel =
+      document.getElementById("startOfficiel");
 
+    const btnStartOfficiel =
+      document.getElementById("btnStartOfficiel");
+    
     /* =========================================================
        VARIABLES
     ========================================================= */
@@ -1017,31 +1041,41 @@
        PASSAGE AUX ESSAIS OFFICIELS
     ========================================================= */
 
-    function commencerOfficiel() {
 
-      phase = "officiel";
-      essaiActuel = 0;
+function commencerOfficiel() {
 
-      stimulusActuel = null;
-      tempsDebutStimulus = null;
+  phase = "officiel";
+  essaiActuel = 0;
 
-      desactiverTousLesCercles();
+  stimulusActuel = null;
+  tempsDebutStimulus = null;
 
-      testStatus.textContent =
-        "La phase officielle commence";
+  desactiverTousLesCercles();
 
-      /*
-        Petit délai entre la fin de l'entraînement
-        et le début des 40 essais officiels.
-      */
+  /*
+    On masque la zone du test et on affiche
+    l'écran START avant les 40 essais officiels.
+  */
 
-      setTimeout(function() {
+  testZone.style.display = "none";
+  startOfficiel.style.display = "block";
 
-        afficherStimulus();
+}
 
-      }, 800);
+ 
+function demarrerEssaisOfficiels() {
 
-    }
+  startOfficiel.style.display = "none";
+  testZone.style.display = "block";
+
+  essaiActuel = 0;
+
+  testStatus.textContent =
+    "Fixez la croix centrale";
+
+  afficherStimulus();
+
+}
 
 
     /* =========================================================
@@ -1239,6 +1273,11 @@
       demarrerTest
     );
 
+    btnStartOfficiel.addEventListener(
+  "click",
+  demarrerEssaisOfficiels
+);
+    
   </script>
 
 </body>
