@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NPI-09 — Anticipation décisionnelle spécifique | Mentallia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f7fa;
+      color: #121449;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .npi-topbar {
+      background: #ffffff;
+      padding: 20px 25px;
+      border-bottom: 1px solid #e8e8ee;
+    }
+
+    .retour-npi {
+      color: #121449;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .retour-npi:hover {
+      text-decoration: underline;
+    }
+
+    .test-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 25px 80px;
+    }
+
+    .test-header {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .test-number {
+      display: inline-block;
+      background: #121449;
+      color: #ffffff;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+
+    .test-header h1 {
+      margin: 0 0 15px;
+      font-size: 2.4rem;
+      font-weight: 700;
+    }
+
+    .test-header p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: #666978;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .test-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(18, 20, 73, 0.06);
+    }
+
+    .instructions {
+      text-align: center;
+    }
+
+    .instructions p {
+      margin: 0 0 25px;
+      color: #555866;
+      line-height: 1.7;
+    }
+
+    .btn-principal {
+      border: none;
+      background: #121449;
+      color: #ffffff;
+      padding: 15px 28px;
+      border-radius: 10px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-principal:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-principal:disabled {
+      opacity: 0.5;
+      cursor: default;
+      transform: none;
+    }
+
+    #testZone {
+      display: none;
+      text-align: center;
+    }
+
+    .test-status {
+      min-height: 25px;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .phase-info {
+      color: #666978;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .essai-info {
+      color: #8a8b96;
+      font-size: 0.85rem;
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================================================
+       ZONE DU TEST
+    ========================================================= */
+
+    .zone-anticipation {
+      position: relative;
+      width: 520px;
+      height: 520px;
+      max-width: 90vw;
+      max-height: 90vw;
+      margin: 0 auto;
+    }
+
+    .cercle-central {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+      width: 190px;
+      height: 190px;
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid #121449;
+
+      z-index: 5;
+
+      transition: background-color 0.05s linear;
+    }
+
+    .carre {
+      position: absolute;
+
+      width: 105px;
+      height: 105px;
+
+      border-radius: 12px;
+
+      border: 3px solid #121449;
+
+      cursor: pointer;
+
+      transition:
+        background-color 0.08s linear,
+        transform 0.1s ease;
+    }
+
+    .carre:hover {
+      transform: scale(1.03);
+    }
+
+    .carre-vert {
+      background: #39a852;
+    }
+
+    .carre-jaune {
+      background: #f2c94c;
+    }
+
+    .carre-bleu {
+      background: #1867d3;
+    }
+
+    .carre-rouge {
+      background: #d83b3b;
+    }
+
+    /*
+      Positions fixes :
+      haut / droite / bas / gauche
+    */
+
+    .position-haut {
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+
+    .position-droite {
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .position-bas {
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+
+    .position-gauche {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .carre.cible {
+      box-shadow: 0 0 0 5px rgba(18, 20, 73, 0.15);
+    }
+
+
+    /* =========================================================
+       MESSAGE CIBLE
+    ========================================================= */
+
+    .consigne-cible {
+      margin-top: 25px;
+      min-height: 25px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+
+    /* =========================================================
+       RESULTATS
+    ========================================================= */
+
+    .resultats-finaux {
+      margin: 30px auto;
+      max-width: 500px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .resultat-item {
+      background: #f7f7fa;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .resultat-label {
+      display: block;
+      color: #666978;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .resultat-valeur {
+      display: block;
+      color: #121449;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .fin-message {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .fin-message h2 {
+      margin: 0 0 12px;
+      font-size: 1.7rem;
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 700px) {
+
+      .test-page {
+        padding: 40px 18px 60px;
+      }
+
+      .test-header h1 {
+        font-size: 2rem;
+      }
+
+      .test-card {
+        padding: 25px 15px;
+      }
+
+      .zone-anticipation {
+        width: 400px;
+        height: 400px;
+      }
+
+      .cercle-central {
+        width: 145px;
+        height: 145px;
+      }
+
+      .carre {
+        width: 80px;
+        height: 80px;
+        border-width: 2px;
+      }
+
+      .resultats-finaux {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 450px) {
+
+      .zone-anticipation {
+        width: 320px;
+        height: 320px;
+      }
+
+      .cercle-central {
+        width: 115px;
+        height: 115px;
+      }
+
+      .carre {
+        width: 62px;
+        height: 62px;
+        border-radius: 8px;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <div class="npi-topbar">
+
+    <a href="NPI.html" class="retour-npi">
+      ← Retour au NeuroPerformance Index
+    </a>
+
+  </div>
+
+
+  <main class="test-page">
+
+    <header class="test-header">
+
+      <div class="test-number">
+        NPI-09
+      </div>
+
+      <h1>
+        Anticipation décisionnelle spécifique
+      </h1>
+
+      <p>
+        Observez la rotation des couleurs autour du cercle central.
+        Lorsque le cercle central se colore, cliquez sur le carré
+        dans lequel arrive cette couleur.
+      </p>
+
+    </header>
+
+
+    <section class="test-card">
+
+
+      <!-- =====================================================
+           INSTRUCTIONS
+      ====================================================== -->
+
+      <div id="instructions" class="instructions">
+
+        <p>
+
+          Le test commence par
+          <strong>3 essais d'entraînement</strong>,
+          puis comporte
+          <strong>30 essais officiels</strong>.
+
+          <br><br>
+
+          Quatre carrés colorés tournent autour du cercle central.
+          Deux rotations complètes sont réalisées avant que le
+          cercle central ne prenne une couleur.
+
+          <br><br>
+
+          Lorsque le cercle central se colore, cliquez le plus
+          rapidement possible sur le carré dans lequel cette
+          couleur arrive.
+
+        </p>
+
+        <button
+          id="btnDemarrer"
+          class="btn-principal"
+        >
+          START
+        </button>
+
+      </div>
+
+
+      <!-- =====================================================
+           ZONE DE TEST
+      ====================================================== -->
+
+      <div id="testZone">
+
+        <div id="testStatus" class="test-status">
+          Préparez-vous
+        </div>
+
+        <div id="phaseInfo" class="phase-info"></div>
+
+        <div id="essaiInfo" class="essai-info"></div>
+
+
+        <div class="zone-anticipation">
+
+          <div
+            id="cercleCentral"
+            class="cercle-central"
+          ></div>
+
+
+          <div
+            class="carre position-haut"
+            data-position="haut"
+          ></div>
+
+          <div
+            class="carre position-droite"
+            data-position="droite"
+          ></div>
+
+          <div
+            class="carre position-bas"
+            data-position="bas"
+          ></div>
+
+          <div
+            class="carre position-gauche"
+            data-position="gauche"
+          ></div>
+
+        </div>
+
+
+        <div
+          id="consigneCible"
+          class="consigne-cible"
+        ></div>
+
+      </div>
+
+
+      <!-- =====================================================
+           START OFFICIEL
+      ====================================================== -->
+
+      <div
+        id="startOfficiel"
+        class="instructions"
+        style="display: none;"
+      >
+
+        <p>
+          Les essais d'entraînement sont terminés.
+          <br><br>
+          Lorsque vous êtes prêt, cliquez sur
+          <strong>START</strong>
+          pour commencer les 30 essais officiels.
+        </p>
+
+        <button
+          id="btnStartOfficiel"
+          class="btn-principal"
+        >
+          START
+        </button>
+
+      </div>
+
+
+      <!-- =====================================================
+           FIN
+      ====================================================== -->
+
+      <div
+        id="finMessage"
+        class="fin-message"
+        style="display: none;"
+      >
+
+        <h2>
+          Test terminé
+        </h2>
+
+        <div class="resultats-finaux">
+
+          <div class="resultat-item">
+
+            <span class="resultat-label">
+              Tanticip moyen
+            </span>
+
+            <span
+              id="resultTanticip"
+              class="resultat-valeur"
+            >
+              —
+            </span>
+
+          </div>
+
+
+          <div class="resultat-item">
+
+            <span class="resultat-label">
+              Tengag moyen
+            </span>
+
+            <span
+              id="resultTengag"
+              class="resultat-valeur"
+            >
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <a
+          href="NPI.html"
+          class="btn-principal"
+          style="display: inline-block; text-decoration: none;"
+        >
+          Retour au NPI
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* =========================================================
+       CONFIGURATION
+    ========================================================= */
+
+    const NOMBRE_ENTRAINEMENT = 3;
+    const NOMBRE_OFFICIEL = 30;
+
+    const NOMBRE_ROTATIONS = 2;
+
+    const DELAI_MIN = 350;
+    const DELAI_MAX = 450;
+
+    const COULEURS = [
+      {
+        nom: "jaune",
+        valeur: "#f2c94c"
+      },
+      {
+        nom: "bleu",
+        valeur: "#1867d3"
+      },
+      {
+        nom: "vert",
+        valeur: "#39a852"
+      },
+      {
+        nom: "rouge",
+        valeur: "#d83b3b"
+      }
+    ];
+
+    const POSITIONS = [
+      "haut",
+      "droite",
+      "bas",
+      "gauche"
+    ];
+
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const instructions =
+      document.getElementById("instructions");
+
+    const testZone =
+      document.getElementById("testZone");
+
+    const finMessage =
+      document.getElementById("finMessage");
+
+    const startOfficiel =
+      document.getElementById("startOfficiel");
+
+    const btnDemarrer =
+      document.getElementById("btnDemarrer");
+
+    const btnStartOfficiel =
+      document.getElementById("btnStartOfficiel");
+
+    const testStatus =
+      document.getElementById("testStatus");
+
+    const phaseInfo =
+      document.getElementById("phaseInfo");
+
+    const essaiInfo =
+      document.getElementById("essaiInfo");
+
+    const consigneCible =
+      document.getElementById("consigneCible");
+
+    const cercleCentral =
+      document.getElementById("cercleCentral");
+
+    const carres =
+      document.querySelectorAll(".carre");
+
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
+    let phase = "entrainement";
+
+    let essaiActuel = 0;
+
+    let direction = 1;
+
+    let indexCouleurs = 0;
+
+    let rotationsEffectuees = 0;
+
+    let sequenceActive = false;
+
+    let cibleCouleur = null;
+
+    let positionCorrecte = null;
+
+    let t0 = null;
+
+    let tArrivee = null;
+
+    let timerRotation = null;
+
+    let timerPreparation = null;
+
+    let tempsTanticip = [];
+
+    let tempsTengag = [];
+
+    let essaisOfficiels = [];
+
+
+    /* =========================================================
+       UTILITAIRES
+    ========================================================= */
+
+    function melanger(tableau) {
+
+      const copie = [...tableau];
+
+      for (
+        let i = copie.length - 1;
+        i > 0;
+        i--
+      ) {
+
+        const j =
+          Math.floor(
+            Math.random() * (i + 1)
+          );
+
+        [
+          copie[i],
+          copie[j]
+        ] = [
+          copie[j],
+          copie[i]
+        ];
+      }
+
+      return copie;
+    }
+
+
+    function obtenirDelaiRotation() {
+
+      return (
+        Math.floor(
+          Math.random() *
+          (
+            DELAI_MAX -
+            DELAI_MIN +
+            1
+          )
+        )
+        +
+        DELAI_MIN
+      );
+
+    }
+
+
+    function obtenirCouleurAleatoire() {
+
+      return COULEURS[
+        Math.floor(
+          Math.random() *
+          COULEURS.length
+        )
+      ];
+
+    }
+
+
+    function positionSuivante(
+      position,
+      sens
+    ) {
+
+      const index =
+        POSITIONS.indexOf(position);
+
+      const nouvelIndex =
+        (
+          index + sens +
+          POSITIONS.length
+        )
+        %
+        POSITIONS.length;
+
+      return POSITIONS[
+        nouvelIndex
+      ];
+
+    }
+
+
+    /* =========================================================
+       AFFICHAGE
+    ========================================================= */
+
+    function mettreAJourInfos() {
+
+      if (
+        phase === "entrainement"
+      ) {
+
+        phaseInfo.textContent =
+          "Entraînement";
+
+        essaiInfo.textContent =
+          "Essai " +
+          (essaiActuel + 1) +
+          " / " +
+          NOMBRE_ENTRAINEMENT;
+
+      } else {
+
+        phaseInfo.textContent =
+          "Essais officiels";
+
+        essaiInfo.textContent =
+          "Essai " +
+          (essaiActuel + 1) +
+          " / " +
+          NOMBRE_OFFICIEL;
+
+      }
+
+    }
+
+
+    function afficherCouleurs(
+      configuration
+    ) {
+
+      carres.forEach(
+        function(carre) {
+
+          const position =
+            carre.dataset.position;
+
+          const couleur =
+            configuration[position];
+
+          carre.style.backgroundColor =
+            couleur;
+
+        }
+      );
+
+    }
+
+
+    function reinitialiserAffichage() {
+
+      carres.forEach(
+        function(carre) {
+
+          carre.style.backgroundColor =
+            "#ffffff";
+
+          carre.classList.remove(
+            "cible"
+          );
+
+        }
+      );
+
+      cercleCentral.style.backgroundColor =
+        "#ffffff";
+
+    }
+
+
+    /* =========================================================
+       CONSTRUCTION DE LA ROTATION
+    ========================================================= */
+
+    function creerConfigurationInitiale() {
+
+      const couleurs =
+        melanger(COULEURS);
+
+      return {
+
+        haut:
+          couleurs[0].valeur,
+
+        droite:
+          couleurs[1].valeur,
+
+        bas:
+          couleurs[2].valeur,
+
+        gauche:
+          couleurs[3].valeur
+
+      };
+
+    }
+
+
+    function trouverPositionCouleur(
+      configuration,
+      couleur
+    ) {
+
+      for (
+        const position of POSITIONS
+      ) {
+
+        if (
+          configuration[position] ===
+          couleur.valeur
+        ) {
+
+          return position;
+
+        }
+
+      }
+
+      return null;
+
+    }
+
+
+    function faireUnPasRotation() {
+
+      if (!sequenceActive) {
+        return;
+      }
+
+      const ancienneConfiguration =
+        window.configurationCouleurs;
+
+      const nouvelleConfiguration = {};
+
+      POSITIONS.forEach(
+        function(position) {
+
+          const anciennePosition =
+            positionSuivante(
+              position,
+              -direction
+            );
+
+          nouvelleConfiguration[position] =
+            ancienneConfiguration[
+              anciennePosition
+            ];
+
+        }
+      );
+
+      window.configurationCouleurs =
+        nouvelleConfiguration;
+
+      afficherCouleurs(
+        nouvelleConfiguration
+      );
+
+
+      /*
+        On regarde si la couleur cible
+        vient d'arriver dans le carré correct.
+      */
+
+      if (
+        cibleCouleur !== null
+      ) {
+
+        const positionCouleur =
+          trouverPositionCouleur(
+            nouvelleConfiguration,
+            cibleCouleur
+          );
+
+        if (
+          positionCouleur ===
+          positionCorrecte
+        ) {
+
+          tArrivee =
+            performance.now();
+
+        }
+
+      }
+
+
+      rotationsEffectuees++;
+
+      /*
+        4 changements de position
+        = une rotation complète.
+      */
+
+      if (
+        rotationsEffectuees >=
+        NOMBRE_ROTATIONS *
+        POSITIONS.length
+      ) {
+
+        terminerRotation();
+
+        return;
+
+      }
+
+
+      timerRotation =
+        setTimeout(
+          faireUnPasRotation,
+          obtenirDelaiRotation()
+        );
+
+    }
+
+
+    /* =========================================================
+       DEBUT DE LA ROTATION
+    ========================================================= */
+
+    function demarrerRotation() {
+
+      sequenceActive = true;
+
+      rotationsEffectuees = 0;
+
+      direction =
+        Math.random() < 0.5
+          ? 1
+          : -1;
+
+      /*
+        La cible est déterminée dès le début
+        de l'essai afin de pouvoir mesurer
+        son arrivée pendant la rotation.
+      */
+
+      cibleCouleur =
+        obtenirCouleurAleatoire();
+
+
+      /*
+        Le carré correct est celui dans lequel
+        la couleur cible se trouvera au moment
+        de l'affichage du cercle central.
+
+        Pour cela, on choisit une position cible.
+      */
+
+      positionCorrecte =
+        POSITIONS[
+          Math.floor(
+            Math.random() *
+            POSITIONS.length
+          )
+        ];
+
+
+      /*
+        On construit une configuration initiale
+        dans laquelle la couleur cible est placée
+        à une autre position que la position correcte.
+      */
+
+      let configuration =
+        creerConfigurationInitiale();
+
+      while (
+        configuration[positionCorrecte] ===
+        cibleCouleur.valeur
+      ) {
+
+        configuration =
+          creerConfigurationInitiale();
+
+      }
+
+      window.configurationCouleurs =
+        configuration;
+
+
+      /*
+        On affiche immédiatement la première
+        configuration.
+      */
+
+      afficherCouleurs(
+        configuration
+      );
+
+
+      /*
+        T0 sera enregistré seulement lorsque
+        le cercle central se colore.
+      */
+
+      tArrivee = null;
+
+
+      /*
+        Premier déplacement après un délai
+        aléatoire de 350 à 450 ms.
+      */
+
+      timerRotation =
+        setTimeout(
+          faireUnPasRotation,
+          obtenirDelaiRotation()
+        );
+
+    }
+
+
+    /* =========================================================
+       FIN DES DEUX ROTATIONS
+    ========================================================= */
+
+    function terminerRotation() {
+
+      sequenceActive = false;
+
+      if (
+        timerRotation !== null
+      ) {
+
+        clearTimeout(
+          timerRotation
+        );
+
+        timerRotation = null;
+
+      }
+
+
+      /*
+        On s'assure que la dernière position
+        de la couleur cible est connue.
+      */
+
+      const positionFinale =
+        trouverPositionCouleur(
+          window.configurationCouleurs,
+          cibleCouleur
+        );
+
+      /*
+        La cible doit être dans le carré
+        correspondant au clic attendu.
+      */
+
+      positionCorrecte =
+        positionFinale;
+
+
+      /*
+        Petite temporisation afin de bien
+        séparer la fin de la rotation
+        de l'apparition de la cible.
+      */
+
+      setTimeout(
+        function() {
+
+          afficherCible();
+
+        },
+        100
+      );
+
+    }
+
+
+    /* =========================================================
+       AFFICHAGE DE LA CIBLE
+    ========================================================= */
+
+    function afficherCible() {
+
+      /*
+        Si la couleur cible est arrivée dans
+        le carré correct pendant les rotations,
+        on conserve le dernier timestamp.
+      */
+
+      if (
+        tArrivee === null
+      ) {
+
+        tArrivee =
+          performance.now();
+
+      }
+
+
+      /*
+        T0 = apparition de la couleur dans
+        le cercle central.
+      */
+
+      t0 =
+        performance.now();
+
+      cercleCentral.style.backgroundColor =
+        cibleCouleur.valeur;
+
+      testStatus.textContent =
+        "Cliquez sur le carré correspondant";
+
+      consigneCible.textContent =
+        "Couleur cible : " +
+        cibleCouleur.nom;
+
+
+      carres.forEach(
+        function(carre) {
+
+          carre.classList.remove(
+            "cible"
+          );
+
+          if (
+            carre.dataset.position ===
+            positionCorrecte
+          ) {
+
+            carre.classList.add(
+              "cible"
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       REPONSE
+    ========================================================= */
+
+    function gererClic(
+      positionCliquee
+    ) {
+
+      if (
+        !sequenceActive &&
+        t0 === null
+      ) {
+
+        return;
+
+      }
+
+      if (
+        t0 === null
+      ) {
+
+        return;
+
+      }
+
+
+      const tClic =
+        performance.now();
+
+
+      /*
+        Tanticip :
+        temps entre l'arrivée de la couleur
+        dans le carré correct et le clic.
+      */
+
+      const tAnticip =
+        tClic -
+        tArrivee;
+
+
+      /*
+        Tengag :
+        temps entre l'apparition de la couleur
+        dans le cercle central et le clic.
+      */
+
+      const tEngag =
+        tClic -
+        t0;
+
+
+      const estCorrect =
+        positionCliquee ===
+        positionCorrecte;
+
+
+      if (
+        phase === "officiel" &&
+        estCorrect
+      ) {
+
+        tempsTanticip.push(
+          tAnticip
+        );
+
+        tempsTengag.push(
+          tEngag
+        );
+
+      }
+
+
+      if (
+        phase === "officiel"
+      ) {
+
+        essaisOfficiels.push({
+
+          positionCliquee:
+            positionCliquee,
+
+          positionCorrecte:
+            positionCorrecte,
+
+          couleur:
+            cibleCouleur.nom,
+
+          direction:
+            direction === 1
+              ? "horaire"
+              : "antihoraire",
+
+          tAnticip:
+            tAnticip,
+
+          tEngag:
+            tEngag,
+
+          valide:
+            estCorrect
+
+        });
+
+      }
+
+
+      /*
+        Nettoyage de l'essai.
+      */
+
+      cercleCentral.style.backgroundColor =
+        "#ffffff";
+
+      consigneCible.textContent = "";
+
+      carres.forEach(
+        function(carre) {
+
+          carre.classList.remove(
+            "cible"
+          );
+
+        }
+      );
+
+      t0 = null;
+      tArrivee = null;
+      cibleCouleur = null;
+      positionCorrecte = null;
+
+      testStatus.textContent =
+        estCorrect
+          ? "Bonne réponse"
+          : "Erreur";
+
+
+      /*
+        L'essai suivant commence après
+        un court délai.
+      */
+
+      setTimeout(
+        lancerEssaiSuivant,
+        400
+      );
+
+    }
+
+
+    /* =========================================================
+       ESSAI SUIVANT
+    ========================================================= */
+
+    function lancerEssaiSuivant() {
+
+      const nombreEssais =
+        phase === "entrainement"
+          ? NOMBRE_ENTRAINEMENT
+          : NOMBRE_OFFICIEL;
+
+
+      essaiActuel++;
+
+
+      if (
+        essaiActuel >=
+        nombreEssais
+      ) {
+
+        if (
+          phase === "entrainement"
+        ) {
+
+          commencerOfficiel();
+
+        } else {
+
+          terminerTest();
+
+        }
+
+        return;
+
+      }
+
+
+      mettreAJourInfos();
+
+      demarrerRotation();
+
+    }
+
+
+    /* =========================================================
+       DEMARRAGE ENTRAINEMENT
+    ========================================================= */
+
+    function demarrerTest() {
+
+      if (
+        timerRotation !== null
+      ) {
+
+        clearTimeout(
+          timerRotation
+        );
+
+        timerRotation = null;
+
+      }
+
+      if (
+        timerPreparation !== null
+      ) {
+
+        clearTimeout(
+          timerPreparation
+        );
+
+        timerPreparation = null;
+
+      }
+
+
+      phase = "entrainement";
+
+      essaiActuel = 0;
+
+      tempsTanticip = [];
+      tempsTengag = [];
+
+      essaisOfficiels = [];
+
+
+      instructions.style.display =
+        "none";
+
+      startOfficiel.style.display =
+        "none";
+
+      finMessage.style.display =
+        "none";
+
+      testZone.style.display =
+        "block";
+
+
+      reinitialiserAffichage();
+
+
+      testStatus.textContent =
+        "Préparez-vous… le test va commencer dans 3 secondes.";
+
+
+      timerPreparation =
+        setTimeout(
+          function() {
+
+            timerPreparation = null;
+
+            mettreAJourInfos();
+
+            testStatus.textContent =
+              "Observez la rotation";
+
+            demarrerRotation();
+
+          },
+          3000
+        );
+
+    }
+
+
+    /* =========================================================
+       PASSAGE AUX ESSAIS OFFICIELS
+    ========================================================= */
+
+    function commencerOfficiel() {
+
+      phase = "officiel";
+
+      essaiActuel = 0;
+
+      t0 = null;
+      tArrivee = null;
+
+      reinitialiserAffichage();
+
+      testZone.style.display =
+        "none";
+
+      startOfficiel.style.display =
+        "block";
+
+    }
+
+
+    /* =========================================================
+       DEMARRAGE OFFICIEL
+    ========================================================= */
+
+    function demarrerEssaisOfficiels() {
+
+      startOfficiel.style.display =
+        "none";
+
+      testZone.style.display =
+        "block";
+
+      essaiActuel = 0;
+
+      reinitialiserAffichage();
+
+      testStatus.textContent =
+        "Préparez-vous… le test va commencer dans 3 secondes.";
+
+
+      timerPreparation =
+        setTimeout(
+          function() {
+
+            timerPreparation = null;
+
+            mettreAJourInfos();
+
+            testStatus.textContent =
+              "Observez la rotation";
+
+            demarrerRotation();
+
+          },
+          3000
+        );
+
+    }
+
+
+    /* =========================================================
+       FIN DU TEST
+    ========================================================= */
+
+    function terminerTest() {
+
+      if (
+        timerRotation !== null
+      ) {
+
+        clearTimeout(
+          timerRotation
+        );
+
+        timerRotation = null;
+
+      }
+
+      if (
+        timerPreparation !== null
+      ) {
+
+        clearTimeout(
+          timerPreparation
+        );
+
+        timerPreparation = null;
+
+      }
+
+
+      sequenceActive = false;
+
+      reinitialiserAffichage();
+
+
+      /*
+        Moyenne Tanticip.
+      */
+
+      let moyenneTanticip = null;
+
+      if (
+        tempsTanticip.length > 0
+      ) {
+
+        const somme =
+          tempsTanticip.reduce(
+            function(
+              total,
+              temps
+            ) {
+
+              return total + temps;
+
+            },
+            0
+          );
+
+        moyenneTanticip =
+          somme /
+          tempsTanticip.length;
+
+      }
+
+
+      /*
+        Moyenne Tengag.
+      */
+
+      let moyenneTengag = null;
+
+      if (
+        tempsTengag.length > 0
+      ) {
+
+        const somme =
+          tempsTengag.reduce(
+            function(
+              total,
+              temps
+            ) {
+
+              return total + temps;
+
+            },
+            0
+          );
+
+        moyenneTengag =
+          somme /
+          tempsTengag.length;
+
+      }
+
+
+      /*
+        Enregistrement dans le stockage
+        commun du NPI.
+      */
+
+      let resultatsNPI =
+        JSON.parse(
+          localStorage.getItem(
+            "NPI-results"
+          )
+        ) || {};
+
+
+      resultatsNPI["NPI-09"] = {
+
+        tAnticip:
+          moyenneTanticip !== null
+            ? Math.round(
+                moyenneTanticip
+              )
+            : null,
+
+        tEngag:
+          moyenneTengag !== null
+            ? Math.round(
+                moyenneTengag
+              )
+            : null,
+
+        nombreEssais:
+          NOMBRE_OFFICIEL,
+
+        essaisValides:
+          essaisOfficiels.filter(
+            function(essai) {
+              return essai.valide;
+            }
+          ).length,
+
+        essaisOfficiels:
+          essaisOfficiels,
+
+        date:
+          new Date().toISOString()
+
+      };
+
+
+      localStorage.setItem(
+        "NPI-results",
+        JSON.stringify(
+          resultatsNPI
+        )
+      );
+
+
+      /*
+        Affichage final.
+      */
+
+      document.getElementById(
+        "resultTanticip"
+      ).textContent =
+        moyenneTanticip !== null
+          ? Math.round(
+              moyenneTanticip
+            ) + " ms"
+          : "—";
+
+
+      document.getElementById(
+        "resultTengag"
+      ).textContent =
+        moyenneTengag !== null
+          ? Math.round(
+              moyenneTengag
+            ) + " ms"
+          : "—";
+
+
+      testZone.style.display =
+        "none";
+
+      finMessage.style.display =
+        "block";
+
+    }
+
+
+    /* =========================================================
+       CLICS SUR LES CARRES
+    ========================================================= */
+
+    carres.forEach(
+      function(carre) {
+
+        carre.addEventListener(
+          "click",
+          function() {
+
+            gererClic(
+              carre.dataset.position
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       BOUTONS
+    ========================================================= */
+
+    btnDemarrer.addEventListener(
+      "click",
+      demarrerTest
+    );
+
+
+    btnStartOfficiel.addEventListener(
+      "click",
+      demarrerEssaisOfficiels
+    );
+
+  </script>
+
+</body>
+</html>
