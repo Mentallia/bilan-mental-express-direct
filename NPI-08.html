@@ -770,228 +770,256 @@
     }
 
 
-    /* =========================================================
-       AFFICHAGE DU STIMULUS
-    ========================================================= */
 
-    function afficherStimulus() {
+/* =========================================================
+   AFFICHAGE DU STIMULUS
+========================================================= */
 
-      const chiffre =
-        obtenirEssaiActuel();
+function afficherStimulus() {
 
-      if (!chiffre) {
-        terminerTest();
-        return;
-      }
+  const chiffre =
+    obtenirEssaiActuel();
 
-      stimulusActuel = chiffre;
+  if (!chiffre) {
+    terminerTest();
+    return;
+  }
 
-      mettreAJourInfos();
+  stimulusActuel = chiffre;
 
-      activerCercle(chiffre);
+  mettreAJourInfos();
 
-      tempsDebutStimulus =
-        performance.now();
+  activerCercle(chiffre);
+
+  tempsDebutStimulus =
+    performance.now();
+
+  testStatus.textContent =
+    "Répondez !";
+
+
+  /*
+    Le stimulus reste visible pendant 500 ms.
+  */
+
+  timerStimulus = setTimeout(function() {
+
+    desactiverTousLesCercles();
+
+    /*
+      Le stimulus n'est plus actif.
+      Une réponse donnée après les 500 ms
+      ne sera donc pas prise en compte.
+    */
+
+    stimulusActuel = null;
+    tempsDebutStimulus = null;
+
+    timerStimulus = null;
+
+  }, DUREE_STIMULUS);
+
+
+  /*
+    Le prochain essai est programmé dès maintenant.
+    Il apparaîtra 2 secondes après le début
+    du stimulus actuel, qu'il y ait eu une réponse
+    ou non.
+  */
+
+  programmerEssaiSuivant();
+
+}
+
+
+/* =========================================================
+   REPONSE
+========================================================= */
+
+function gererReponse(chiffreReponse) {
+
+  /*
+    Aucune réponse n'est prise en compte
+    lorsqu'aucun stimulus n'est actif.
+  */
+
+  if (
+    stimulusActuel === null ||
+    tempsDebutStimulus === null
+  ) {
+    return;
+  }
+
+  const tempsReaction =
+    performance.now() -
+    tempsDebutStimulus;
+
+  const chiffreCorrect =
+    stimulusActuel;
+
+  const estCorrect =
+    chiffreReponse === chiffreCorrect;
+
+
+  /*
+    Le stimulus est immédiatement désactivé
+    après la réponse.
+  */
+
+  if (timerStimulus !== null) {
+
+    clearTimeout(timerStimulus);
+    timerStimulus = null;
+
+  }
+
+  desactiverTousLesCercles();
+
+
+  /*
+    Une seule réponse est possible
+    pour chaque stimulus.
+  */
+
+  stimulusActuel = null;
+  tempsDebutStimulus = null;
+
+
+  /* =====================================================
+     ENTRAINEMENT
+  ===================================================== */
+
+  if (phase === "entrainement") {
+
+    if (estCorrect) {
 
       testStatus.textContent =
-        "Répondez !";
+        "Bonne réponse";
 
-      /*
-        Le cercle reste bleu clair pendant 500 ms.
-      */
-      timerStimulus = setTimeout(function() {
+    } else {
 
-        desactiverTousLesCercles();
-
-        /*
-          Le stimulus disparaît après 500 ms.
-          Le prochain apparaît à 2 secondes du
-          début du stimulus actuel.
-        */
-
-      }, DUREE_STIMULUS);
+      testStatus.textContent =
+        "Erreur";
 
     }
 
+    /*
+      NE PAS appeler programmerEssaiSuivant() ici.
+      Le prochain essai est déjà programmé depuis
+      l'apparition du stimulus.
+    */
 
-    /* =========================================================
-       REPONSE
-    ========================================================= */
+    return;
+  }
 
-    function gererReponse(chiffreReponse) {
 
-      /*
-        Aucune réponse n'est prise en compte
-        lorsqu'aucun stimulus n'est actif.
-      */
+  /* =====================================================
+     ESSAIS OFFICIELS
+  ===================================================== */
+
+  if (estCorrect) {
+
+    tempsReponses.push(
+      tempsReaction
+    );
+
+    nombreReponsesCorrectes++;
+
+    testStatus.textContent =
+      "Bonne réponse";
+
+  } else {
+
+    testStatus.textContent =
+      "Erreur";
+
+  }
+
+  /*
+    NE PAS appeler programmerEssaiSuivant() ici.
+    Le prochain essai est déjà programmé.
+  */
+
+}
+
+
+/* =========================================================
+   ABSENCE DE REPONSE
+========================================================= */
+
+function gererAbsenceReponse() {
+
+  /*
+    Cette fonction n'a plus besoin de déclencher
+    l'essai suivant : celui-ci est déjà programmé
+    automatiquement par afficherStimulus().
+  */
+
+  if (stimulusActuel === null) {
+    return;
+  }
+
+  stimulusActuel = null;
+  tempsDebutStimulus = null;
+
+  desactiverTousLesCercles();
+
+  testStatus.textContent =
+    "Pas de réponse";
+
+}
+
+
+/* =========================================================
+   ESSAI SUIVANT
+========================================================= */
+
+function programmerEssaiSuivant() {
+
+  /*
+    Le prochain stimulus apparaît exactement
+    2 secondes après le début du stimulus actuel.
+  */
+
+  timerProchainEssai =
+    setTimeout(function() {
+
+      timerProchainEssai = null;
+
+      essaiActuel++;
+
+      const nombreEssais =
+        phase === "entrainement"
+          ? NOMBRE_ENTRAINEMENT
+          : NOMBRE_OFFICIEL;
+
+
       if (
-        stimulusActuel === null ||
-        tempsDebutStimulus === null
+        essaiActuel >= nombreEssais
       ) {
-        return;
-      }
 
-      const tempsReaction =
-        performance.now() -
-        tempsDebutStimulus;
+        if (
+          phase === "entrainement"
+        ) {
 
-      const chiffreCorrect =
-        stimulusActuel;
-
-      const estCorrect =
-        chiffreReponse === chiffreCorrect;
-
-      /*
-        Le stimulus est immédiatement désactivé
-        après la réponse.
-      */
-      if (timerStimulus !== null) {
-
-        clearTimeout(timerStimulus);
-        timerStimulus = null;
-
-      }
-
-      desactiverTousLesCercles();
-
-      /*
-        Une seule réponse est possible par stimulus.
-      */
-      stimulusActuel = null;
-      tempsDebutStimulus = null;
-
-
-      /* =====================================================
-         ENTRAINEMENT
-      ===================================================== */
-
-      if (phase === "entrainement") {
-
-        if (estCorrect) {
-
-          testStatus.textContent =
-            "Bonne réponse";
+          commencerOfficiel();
 
         } else {
 
-          testStatus.textContent =
-            "Erreur";
+          terminerTest();
 
         }
 
-        programmerEssaiSuivant();
-
         return;
       }
 
 
-      /* =====================================================
-         ESSAIS OFFICIELS
-      ===================================================== */
+      afficherStimulus();
 
-      if (estCorrect) {
+    }, INTERVALLE_STIMULUS);
 
-        tempsReponses.push(
-          tempsReaction
-        );
+}
 
-        nombreReponsesCorrectes++;
-
-        testStatus.textContent =
-          "Bonne réponse";
-
-      } else {
-
-        testStatus.textContent =
-          "Erreur";
-
-      }
-
-      programmerEssaiSuivant();
-
-    }
-
-
-    /* =========================================================
-       ABSENCE DE REPONSE
-    ========================================================= */
-
-    function gererAbsenceReponse() {
-
-      if (stimulusActuel === null) {
-        return;
-      }
-
-      /*
-        Une absence de réponse est simplement considérée
-        comme une réponse incorrecte pour le calcul du
-        nombre de réponses correctes.
-      */
-
-      stimulusActuel = null;
-      tempsDebutStimulus = null;
-
-      desactiverTousLesCercles();
-
-      testStatus.textContent =
-        "Pas de réponse";
-
-      programmerEssaiSuivant();
-
-    }
-
-
-    /* =========================================================
-       ESSAI SUIVANT
-    ========================================================= */
-
-    function programmerEssaiSuivant() {
-
-      /*
-        Le prochain stimulus doit apparaître 2 secondes
-        après le début du stimulus précédent.
-      */
-
-      const tempsRestant =
-        Math.max(
-          0,
-          INTERVALLE_STIMULUS -
-          DUREE_STIMULUS
-        );
-
-      timerProchainEssai =
-        setTimeout(function() {
-
-          essaiActuel++;
-
-          const nombreEssais =
-            phase === "entrainement"
-              ? NOMBRE_ENTRAINEMENT
-              : NOMBRE_OFFICIEL;
-
-          if (
-            essaiActuel >= nombreEssais
-          ) {
-
-            if (
-              phase === "entrainement"
-            ) {
-
-              commencerOfficiel();
-
-            } else {
-
-              terminerTest();
-
-            }
-
-            return;
-          }
-
-          afficherStimulus();
-
-        }, tempsRestant);
-    }
 
 
     /* =========================================================
